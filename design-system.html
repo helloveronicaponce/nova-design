@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOVA — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── BASE ──────────────────────────────────────── */
+    :root {
+      --black:   #000000;
+      --yellow:  #FFD700;
+      --white:   #FFFFFF;
+      --gray:    #888888;
+      --gray-dk: #222222;
+      --gray-md: #333333;
+      --gray-lt: #AAAAAA;
+      --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'Space Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 52px;
+      background: #000;
+      border-bottom: 1px solid #222;
+      display: flex; align-items: center;
+      padding: 0 40px;
+      gap: 32px;
+      z-index: 999;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 14px;
+      letter-spacing: 0.15em;
+      color: var(--yellow);
+      margin-right: 16px;
+    }
+    .nav-sub {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.2em;
+      color: var(--gray);
+    }
+    nav a {
+      font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #666;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--white); }
+
+    /* ─── LAYOUT ────────────────────────────────────── */
+    main { padding-top: 52px; }
+
+    .section {
+      padding: 80px 80px;
+      border-bottom: 1px solid #111;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ─── HERO ──────────────────────────────────────── */
+    .hero {
+      padding: 0;
+      max-width: 100%;
+      border-bottom: 1px solid #111;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 100px 80px 80px;
+      position: relative; z-index: 2;
+    }
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.25em;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 72px; font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: var(--yellow); }
+    .hero-desc {
+      font-size: 16px; color: #777;
+      margin-top: 20px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+    }
+    .hero-arc {
+      position: absolute;
+      width: 600px; height: 600px;
+      border: 1px solid rgba(255,215,0,0.08);
+      border-radius: 50%;
+      top: -200px; right: -100px;
+      z-index: 1; pointer-events: none;
+    }
+    .hero-arc2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 50%;
+      bottom: -150px; right: 100px;
+      z-index: 1; pointer-events: none;
+    }
+    .hero-hline {
+      position: absolute;
+      top: 50%; left: 0; right: 0;
+      height: 1px; background: rgba(255,255,255,0.04);
+      z-index: 1;
+    }
+
+    /* ─── SECTION HEADER ────────────────────────────── */
+    .sec-header {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 48px;
+    }
+    .sec-num {
+      font-family: var(--font-mono);
+      font-size: 11px; color: var(--yellow);
+      letter-spacing: 0.2em;
+    }
+    .sec-title {
+      font-size: 28px; font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .sec-divider {
+      flex: 1; height: 1px;
+      background: #1a1a1a;
+      margin-left: 16px;
+    }
+
+    /* ─── GRID ──────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* ─── COLORS ────────────────────────────────────── */
+    .color-card {
+      border: 1px solid #1a1a1a;
+    }
+    .color-swatch {
+      height: 100px;
+    }
+    .color-info {
+      padding: 16px;
+      background: #0a0a0a;
+    }
+    .color-name {
+      font-size: 13px; font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .color-hex {
+      font-family: var(--font-mono);
+      font-size: 11px; color: var(--gray);
+      letter-spacing: 0.1em;
+    }
+    .color-use {
+      font-size: 11px; color: #555;
+      margin-top: 8px;
+    }
+    .rule-box {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .rule-box h4 {
+      font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 16px;
+      font-family: var(--font-mono);
+    }
+    .rule-item {
+      font-size: 13px; color: #aaa;
+      margin-bottom: 8px;
+      padding-left: 16px;
+      position: relative;
+    }
+    .rule-item::before {
+      content: '✦';
+      position: absolute; left: 0;
+      color: var(--yellow); font-size: 9px;
+    }
+
+    /* ─── TYPOGRAPHY ────────────────────────────────── */
+    .type-specimen {
+      border: 1px solid #1a1a1a;
+      background: #0a0a0a;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.2em;
+      color: var(--gray); text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .type-table {
+      width: 100%; border-collapse: collapse;
+      margin-top: 24px;
+    }
+    .type-table th {
+      font-size: 10px; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 400;
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 1px solid #1a1a1a;
+      font-family: var(--font-mono);
+    }
+    .type-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #0f0f0f;
+      font-size: 13px; color: #aaa;
+    }
+    .type-table td:first-child { color: var(--white); }
+
+    /* ─── LOGOS ─────────────────────────────────────── */
+    .logo-card {
+      border: 1px solid #1a1a1a;
+      overflow: hidden;
+    }
+    .logo-preview {
+      padding: 40px 24px;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 200px;
+    }
+    .logo-preview img {
+      width: 100%; max-width: 500px;
+      height: auto; display: block;
+    }
+    .logo-meta {
+      padding: 20px 24px;
+      background: #0a0a0a;
+      border-top: 1px solid #1a1a1a;
+    }
+    .logo-meta-name {
+      font-size: 13px; font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .logo-meta-file {
+      font-family: var(--font-mono);
+      font-size: 10px; color: var(--yellow);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .logo-meta-use {
+      font-size: 11px; color: #666;
+    }
+    .logo-header-preview {
+      width: 100%;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 9px; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+    .badge-new { background: var(--yellow); color: #000; }
+    .badge-default { background: #222; color: #aaa; }
+
+    /* ─── COMPONENTS ─────────────────────────────────── */
+    .comp-group { margin-bottom: 48px; }
+    .comp-group h3 {
+      font-size: 13px; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-family: var(--font-mono);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .comp-preview {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      padding: 32px;
+      display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: flex-start;
+    }
+    .comp-preview.dark-bg { background: #000; }
+    .comp-preview.yellow-bg { background: var(--yellow); }
+    .comp-preview.white-bg { background: #fff; }
+
+    /* Botões */
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--yellow);
+      color: #000;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none; cursor: pointer;
+      font-family: var(--font-sans);
+    }
+    .btn-secondary {
+      padding: 13px 31px;
+      background: transparent;
+      color: var(--white);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid #444;
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+    .btn-ghost {
+      padding: 13px 31px;
+      background: transparent;
+      color: var(--yellow);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--yellow);
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+
+    /* Badges/Tags */
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .tag-yellow { background: var(--yellow); color: #000; }
+    .tag-white  { background: var(--white); color: #000; }
+    .tag-outline { border: 1px solid #444; color: #aaa; }
+
+    /* Moldura de marca */
+    .frame-demo {
+      position: relative;
+      width: 340px; height: 200px;
+      background: #000;
+      border: 1px solid #333;
+      overflow: hidden;
+    }
+    .frame-demo-inner {
+      position: absolute; inset: 0;
+    }
+    .fd-top, .fd-bottom {
+      position: absolute; left: 16px; right: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-mono);
+      font-size: 8px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: #555;
+    }
+    .fd-top { top: 12px; }
+    .fd-bottom { bottom: 12px; }
+    .fd-left {
+      position: absolute; left: 8px; top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl; transform: rotate(180deg) translateX(50%);
+      font-family: var(--font-mono);
+      font-size: 7px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: #333;
+    }
+    .fd-content {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #444;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+    }
+    .fd-arc {
+      position: absolute;
+      width: 260px; height: 260px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 50%;
+      bottom: -130px; right: -60px;
+      pointer-events: none;
+    }
+
+    /* Info labels */
+    .info-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .info-label {
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #000; min-width: 55px;
+    }
+    .info-sep {
+      font-family: var(--font-mono);
+      font-size: 10px; color: #999;
+    }
+    .info-val { font-size: 13px; color: #333; }
+    .info-demo {
+      background: #fff;
+      padding: 20px 24px;
+    }
+
+    /* Bounding box */
+    .bbox-demo {
+      position: relative;
+      display: inline-block;
+      padding: 20px 32px;
+      font-size: 32px; font-weight: 900;
+      letter-spacing: 0.05em;
+      color: var(--white);
+    }
+    .bbox-frame {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,0.4);
+      pointer-events: none;
+    }
+    .bbox-frame::before, .bbox-frame::after,
+    .bbox-frame .c1, .bbox-frame .c2 {
+      content: '';
+      position: absolute;
+      width: 6px; height: 6px;
+      background: rgba(255,255,255,0.6);
+    }
+    .bbox-frame::before { top: -3px; left: -3px; }
+    .bbox-frame::after  { top: -3px; right: -3px; }
+    .bbox-frame .c1     { bottom: -3px; left: -3px; }
+    .bbox-frame .c2     { bottom: -3px; right: -3px; }
+
+    /* ─── EXEMPLOS ──────────────────────────────────── */
+    .piece-preview {
+      border: 1px solid #1a1a1a;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .piece-label {
+      background: #0a0a0a;
+      border-bottom: 1px solid #1a1a1a;
+      padding: 12px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .piece-label span {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gray);
+    }
+    .piece-label strong {
+      font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--white);
+      font-family: var(--font-mono);
+    }
+    .piece-canvas {
+      display: flex; justify-content: center;
+      padding: 40px;
+      background: #050505;
+    }
+
+    /* Peça 1 — Post Instagram */
+    .post-ig {
+      width: 300px; height: 300px;
+      background: #000;
+      position: relative; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .post-ig-arc {
+      position: absolute;
+      width: 320px; height: 320px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      bottom: -160px; right: -60px;
+    }
+    .post-ig-hline {
+      position: absolute; top: 50%; left: 0; right: 0;
+      height: 1px; background: rgba(255,255,255,0.08);
+    }
+    .post-ig-frame-t, .post-ig-frame-b {
+      position: absolute; left: 14px; right: 14px;
+      display: flex; justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 7px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #333;
+    }
+    .post-ig-frame-t { top: 12px; }
+    .post-ig-frame-b { bottom: 12px; }
+    .post-ig-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 30px;
+    }
+    .post-ig-tag {
+      background: var(--yellow); color: #000;
+      font-size: 7px; font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      font-family: var(--font-mono);
+      margin-bottom: 14px;
+    }
+    .post-ig-title {
+      font-size: 18px; font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .post-ig-sub {
+      font-family: var(--font-mono);
+      font-size: 8px; color: #555;
+      letter-spacing: 0.1em;
+      margin-top: 10px;
+    }
+
+    /* Peça 2 — Convite WhatsApp */
+    .whatsapp-card {
+      width: 340px;
+      background: #000;
+      border: 1px solid #222;
+      position: relative; overflow: hidden;
+    }
+    .wa-faixa {
+      background: var(--yellow);
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wa-faixa-text {
+      font-size: 18px; font-weight: 900;
+      color: #000; letter-spacing: 0.08em;
+    }
+    .wa-faixa-sub {
+      font-family: var(--font-mono);
+      font-size: 8px; color: #555;
+      letter-spacing: 0.15em;
+      text-align: center;
+      margin-top: 2px;
+    }
+    .wa-body {
+      padding: 20px;
+      background: #fff;
+    }
+    .wa-title {
+      font-size: 15px; font-weight: 700;
+      color: #000; margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .wa-text {
+      font-size: 12px; color: #444;
+      margin-bottom: 16px; line-height: 1.5;
+    }
+    .wa-info .info-row { margin-bottom: 6px; }
+    .wa-info .info-label { font-size: 9px; min-width: 45px; }
+    .wa-info .info-sep { font-size: 9px; }
+    .wa-info .info-val { font-size: 12px; }
+
+    /* Peça 3 — Slide capa */
+    .slide-capa {
+      width: 480px; height: 270px;
+      background: #000;
+      position: relative; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .slide-arc {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 50%; pointer-events: none;
+    }
+    .slide-hline {
+      position: absolute; top: 50%; left: 0; right: 0;
+      height: 1px; background: rgba(255,255,255,0.06);
+    }
+    .slide-frame-t, .slide-frame-b {
+      position: absolute; left: 20px; right: 20px;
+      display: flex; justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 7px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: #333;
+    }
+    .slide-frame-t { top: 14px; }
+    .slide-frame-b { bottom: 14px; }
+    .slide-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 40px;
+    }
+    .slide-tag {
+      font-family: var(--font-mono);
+      font-size: 8px; letter-spacing: 0.2em;
+      color: var(--yellow); text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .slide-title {
+      font-size: 26px; font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .slide-sub {
+      font-family: var(--font-mono);
+      font-size: 8px; color: #555;
+      letter-spacing: 0.12em;
+      margin-top: 8px; text-transform: uppercase;
+    }
+
+    /* Peça 4 — Header email */
+    .email-header-demo {
+      width: 100%; max-width: 580px;
+      border: 1px solid #333;
+    }
+    .email-header-demo img { width: 100%; display: block; }
+
+    /* ─── TOKENS ─────────────────────────────────────── */
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: #1a1a1a;
+      border: 1px solid #1a1a1a;
+      overflow: hidden;
+    }
+    .token-item {
+      background: #0a0a0a;
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .token-key {
+      font-family: var(--font-mono);
+      font-size: 11px; color: var(--yellow);
+      letter-spacing: 0.08em;
+      min-width: 140px;
+    }
+    .token-val {
+      font-family: var(--font-mono);
+      font-size: 11px; color: #666;
+    }
+    .token-preview {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid #111;
+      padding: 40px 80px;
+      display: flex; justify-content: space-between;
+      align-items: center;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .footer-logo {
+      font-size: 16px; font-weight: 700;
+      letter-spacing: 0.12em; color: var(--yellow);
+    }
+    .footer-sub {
+      font-family: var(--font-mono);
+      font-size: 9px; color: #444;
+      letter-spacing: 0.15em; margin-top: 4px;
+    }
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: 9px; color: #333;
+      letter-spacing: 0.1em; text-align: right;
+    }
+
+    /* ─── STAR ──────────────────────────────────────── */
+    .star { color: var(--yellow); font-size: 12px; }
+
+    /* ─── CODE BLOCK ─────────────────────────────────── */
+    .code-block {
+      background: #080808;
+      border: 1px solid #1a1a1a;
+      border-left: 3px solid var(--yellow);
+      padding: 20px 24px;
+      font-family: var(--font-mono);
+      font-size: 12px; color: #aaa;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+    .code-block .kw { color: var(--yellow); }
+    .code-block .val { color: #7ec8e3; }
+    .code-block .cmt { color: #444; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═════════════════════════════════════════ -->
+<nav>
+  <span class="nav-logo">NOVA</span>
+  <span class="nav-sub">/DESIGN_SYSTEM &nbsp; > v2.0</span>
+  <a href="#cores">Cores</a>
+  <a href="#tipografia">Tipografia</a>
+  <a href="#logos">Logos</a>
+  <a href="#componentes">Componentes</a>
+  <a href="#exemplos">Exemplos</a>
+</nav>
+
+<main>
+
+<!-- ═══ HERO ════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-arc"></div>
+  <div class="hero-arc2"></div>
+  <div class="hero-hline"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">INPUT → COMITÊ DE IA &nbsp;&nbsp; > initializing design system...</div>
+    <h1>NOVA<br><span>Design System</span></h1>
+    <p class="hero-desc">/IDENTIDADE_VISUAL &nbsp; · &nbsp; Versão 2.0 &nbsp; · &nbsp; /imagine &nbsp;&nbsp; ✦</p>
+  </div>
+</div>
+
+<!-- ═══ 01 CORES ════════════════════════════════════ -->
+<section class="section" id="cores">
+  <div class="sec-header">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Paleta de Cores</h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <div class="grid-4">
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#000000; border-bottom:1px solid #222;"></div>
+      <div class="color-info">
+        <div class="color-name">Preto NOVA</div>
+        <div class="color-hex">#000000</div>
+        <div class="color-use">Fundo principal — SEMPRE puro, sem gradientes</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#FFD700;"></div>
+      <div class="color-info">
+        <div class="color-name">Amarelo NOVA</div>
+        <div class="color-hex">#FFD700</div>
+        <div class="color-use">Destaques, faixas, fundo alternativo, tags</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#FFFFFF; border-bottom:1px solid #eee;"></div>
+      <div class="color-info">
+        <div class="color-name">Branco</div>
+        <div class="color-hex">#FFFFFF</div>
+        <div class="color-use">Texto em fundo escuro, blocos de conteúdo</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background:#888888;"></div>
+      <div class="color-info">
+        <div class="color-name">Cinza Médio</div>
+        <div class="color-hex">#888888</div>
+        <div class="color-use">Textos secundários, labels discretos</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rule-box">
+    <h4>Regras de Combinação</h4>
+    <div class="rule-item">Fundo preto → texto branco, destaques amarelos</div>
+    <div class="rule-item">Fundo amarelo → texto e elementos em preto</div>
+    <div class="rule-item">Fundo branco → texto preto, destaques amarelos</div>
+    <div class="rule-item">Amarelo NUNCA para texto pequeno — é cor de destaque e faixas</div>
+    <div class="rule-item">PROIBIDO: gradientes no fundo, variações de cinza como fundo principal</div>
+  </div>
+
+  <div class="code-block" style="margin-top:24px;">
+<span class="kw">:root</span> {<br>
+&nbsp;&nbsp;<span class="kw">--black</span>:  <span class="val">#000000</span>; <span class="cmt">/* Fundo principal */</span><br>
+&nbsp;&nbsp;<span class="kw">--yellow</span>: <span class="val">#FFD700</span>; <span class="cmt">/* Destaque */</span><br>
+&nbsp;&nbsp;<span class="kw">--white</span>:  <span class="val">#FFFFFF</span>; <span class="cmt">/* Texto em escuro */</span><br>
+&nbsp;&nbsp;<span class="kw">--gray</span>:   <span class="val">#888888</span>; <span class="cmt">/* Secundário */</span><br>
+}
+  </div>
+</section>
+
+<!-- ═══ 02 TIPOGRAFIA ════════════════════════════════ -->
+<section class="section" id="tipografia">
+  <div class="sec-header">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Tipografia</h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:32px;">
+    <div class="type-specimen">
+      <div class="type-label">Fonte Principal — Inter</div>
+      <div style="font-family:'Inter',sans-serif;">
+        <div style="font-size:48px;font-weight:900;letter-spacing:-0.02em;line-height:1;">Aa</div>
+        <div style="font-size:14px;color:#555;margin-top:12px;letter-spacing:0.05em;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+        <div style="font-size:14px;color:#555;letter-spacing:0.05em;">abcdefghijklmnopqrstuvwxyz</div>
+        <div style="font-size:14px;color:#555;letter-spacing:0.05em;">0123456789 !@#$%&</div>
+      </div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Fonte Mono — Space Mono</div>
+      <div style="font-family:'Space Mono',monospace;">
+        <div style="font-size:48px;font-weight:700;letter-spacing:-0.02em;line-height:1;">Aa</div>
+        <div style="font-size:13px;color:#555;margin-top:12px;letter-spacing:0.08em;">/COMITÊ_DE_IA</div>
+        <div style="font-size:13px;color:#555;letter-spacing:0.08em;">> initializing...</div>
+        <div style="font-size:13px;color:#555;letter-spacing:0.08em;">INPUT → IMPACTO</div>
+      </div>
+    </div>
+  </div>
+
+  <table class="type-table">
+    <thead>
+      <tr>
+        <th>Elemento</th>
+        <th>Fonte</th>
+        <th>Peso</th>
+        <th>Tamanho (ref 1080px)</th>
+        <th>Letter-spacing</th>
+        <th>Exemplo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Título principal</td>
+        <td>Inter</td>
+        <td>700–900</td>
+        <td>48–72px</td>
+        <td>0 / -0.02em</td>
+        <td><span style="font-size:20px;font-weight:900;font-family:'Inter',sans-serif;">NOVA</span></td>
+      </tr>
+      <tr>
+        <td>Subtítulo</td>
+        <td>Inter</td>
+        <td>600</td>
+        <td>28–36px</td>
+        <td>0.02em</td>
+        <td><span style="font-size:15px;font-weight:600;font-family:'Inter',sans-serif;">Comitê de IA</span></td>
+      </tr>
+      <tr>
+        <td>Corpo</td>
+        <td>Inter</td>
+        <td>400</td>
+        <td>18–22px</td>
+        <td>0.01em</td>
+        <td><span style="font-size:13px;font-family:'Inter',sans-serif;">Texto de conteúdo normal</span></td>
+      </tr>
+      <tr>
+        <td>Labels de marca</td>
+        <td>Inter</td>
+        <td>300</td>
+        <td>10–14px</td>
+        <td>0.15em</td>
+        <td><span style="font-size:10px;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;font-family:'Inter',sans-serif;">COMITÊ DE IA</span></td>
+      </tr>
+      <tr>
+        <td>Prefixos / Terminal</td>
+        <td>Space Mono</td>
+        <td>400</td>
+        <td>10–14px</td>
+        <td>0.1–0.2em</td>
+        <td><span style="font-size:11px;font-family:'Space Mono',monospace;color:#FFD700;">/CONTEXTO</span></td>
+      </tr>
+      <tr>
+        <td>Moldura de marca</td>
+        <td>Space Mono</td>
+        <td>400</td>
+        <td>9–12px</td>
+        <td>0.2em</td>
+        <td><span style="font-size:9px;font-family:'Space Mono',monospace;letter-spacing:0.2em;text-transform:uppercase;color:#888;">> initializing...</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="rule-box" style="margin-top:24px;">
+    <h4>Regras Tipográficas</h4>
+    <div class="rule-item">Emojis PROIBIDOS — use ✦ como bullet ou acento decorativo</div>
+    <div class="rule-item">border-radius PROIBIDO em qualquer elemento — estética angular e cortante</div>
+    <div class="rule-item">Labels de moldura sempre em UPPERCASE</div>
+    <div class="rule-item">Títulos com prefixo / sempre uppercase: /AGENDA, /CONTEXTO</div>
+    <div class="rule-item">Nunca deixar preposições soltas no fim de linha (viúvas)</div>
+  </div>
+</section>
+
+<!-- ═══ 03 LOGOS ═════════════════════════════════════ -->
+<section class="section" id="logos">
+  <div class="sec-header">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Logo e Variantes</h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <div style="margin-bottom:12px; font-family:var(--font-mono); font-size:11px; color:var(--gray); letter-spacing:0.1em;">
+    ✦ Versão v2 — usar sempre por padrão &nbsp; · &nbsp; 3 variantes de fundo + header oficial
+  </div>
+
+  <div class="grid-2" style="margin-bottom:24px;">
+
+    <div class="logo-card">
+      <div class="logo-preview" style="background:#000;">
+        <img src="./Assets/[LOGO] COMITE DE IA - NOVA - v2 preto.png" alt="Logo NOVA v2 fundo preto">
+      </div>
+      <div class="logo-meta">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div class="logo-meta-name">Logo v2 — Fundo Preto</div>
+          <span class="badge badge-default">PADRÃO</span>
+        </div>
+        <div class="logo-meta-file">logo-v2-preto.b64 &nbsp; · &nbsp; {{LOGO_V2_PRETO}}</div>
+        <div class="logo-meta-use">Posts Instagram, LinkedIn, Twitter, slides escuros</div>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-preview" style="background:#fff;">
+        <img src="./Assets/[LOGO] COMITE DE IA - NOVA - v2 branco.png" alt="Logo NOVA v2 fundo branco">
+      </div>
+      <div class="logo-meta">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div class="logo-meta-name">Logo v2 — Fundo Branco</div>
+          <span class="badge badge-new">NOVO</span>
+        </div>
+        <div class="logo-meta-file">logo-v2-branco.b64 &nbsp; · &nbsp; {{LOGO_V2_BRANCO}}</div>
+        <div class="logo-meta-use">Peças fundo branco, documentos, e-mails claros</div>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-preview" style="background:#FFD700;">
+        <img src="./Assets/[LOGO] COMITE DE IA - NOVA - v2.png" alt="Logo NOVA v2 fundo amarelo">
+      </div>
+      <div class="logo-meta">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div class="logo-meta-name">Logo v2 — Fundo Amarelo</div>
+          <span class="badge badge-default">PADRÃO</span>
+        </div>
+        <div class="logo-meta-file">logo-v2-amarelo.b64 &nbsp; · &nbsp; {{LOGO_V2_AMARELO}}</div>
+        <div class="logo-meta-use">Faixas amarelas, cards informativos, destaques</div>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-preview" style="background:#FFD700; padding:0;">
+        <img class="logo-header-preview" src="./Assets/HEADER-COMITE-DE-IA-NOVA.png" alt="Header NOVA oficial">
+      </div>
+      <div class="logo-meta">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div class="logo-meta-name">Header Banner Oficial</div>
+          <span class="badge badge-new">NOVO</span>
+        </div>
+        <div class="logo-meta-file">header-nova.b64 &nbsp; · &nbsp; {{HEADER_NOVA}}</div>
+        <div class="logo-meta-use">Cabeçalho de e-mail, banner LinkedIn, capa de canal</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rule-box">
+    <h4>Anatomia do Logo v2</h4>
+    <div class="rule-item">Wordmark "NOVA" em tipografia geométrica bold ocupando toda a largura</div>
+    <div class="rule-item">"O" com tratamento digital pixelado — blocos quadrados, estética de dado corrompido</div>
+    <div class="rule-item">Efeito de partículas/dispersão em pontos das letras (N, O, A)</div>
+    <div class="rule-item">Bounding boxes com handles nos cantos sobre as letras</div>
+    <div class="rule-item">Labels nos 4 cantos: INPUT (sup esq) · → (sup centro) · IMPACTO (sup dir) · /imagine (inf esq) · > initializing... (inf dir)</div>
+    <div class="rule-item">/COMITÊ_DE_IA em Space Mono, centralizado abaixo do wordmark</div>
+    <div class="rule-item"><strong style="color:#fff;">NÃO recriar esses elementos externamente</strong> quando usar o logo grande — eles já estão na imagem</div>
+  </div>
+</section>
+
+<!-- ═══ 04 COMPONENTES ═══════════════════════════════ -->
+<section class="section" id="componentes">
+  <div class="sec-header">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Componentes</h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <!-- Botões -->
+  <div class="comp-group">
+    <h3>/Botões</h3>
+    <div class="comp-preview">
+      <button class="btn-primary">Primário</button>
+      <button class="btn-secondary">Secundário</button>
+      <button class="btn-ghost">Ghost</button>
+    </div>
+    <div class="code-block">
+<span class="cmt">/* Primário */</span><br>
+<span class="kw">.btn-primary</span> { <span class="kw">background</span>: <span class="val">#FFD700</span>; <span class="kw">color</span>: <span class="val">#000</span>; <span class="kw">border-radius</span>: <span class="val">0</span>; <span class="kw">padding</span>: <span class="val">14px 32px</span>; }<br>
+<span class="cmt">/* Secundário */</span><br>
+<span class="kw">.btn-secondary</span> { <span class="kw">border</span>: <span class="val">1px solid #444</span>; <span class="kw">background</span>: <span class="val">transparent</span>; }
+    </div>
+  </div>
+
+  <!-- Tags / Badges -->
+  <div class="comp-group">
+    <h3>/Tags e Badges</h3>
+    <div class="comp-preview">
+      <span class="tag tag-yellow">MÓDULO 1</span>
+      <span class="tag tag-white">Destaque</span>
+      <span class="tag tag-outline">Em breve</span>
+      <span class="tag tag-yellow">IA Aplicada</span>
+    </div>
+    <div class="rule-box" style="margin-top:16px;">
+      <h4>Regra de badges</h4>
+      <div class="rule-item">A caixa deve ter exatamente o tamanho do texto + padding pequeno (6–8px horizontal, 4–5px vertical)</div>
+      <div class="rule-item">NUNCA deixar a caixa visivelmente maior que o texto</div>
+      <div class="rule-item">Sempre em UPPERCASE, Space Mono, peso 700</div>
+    </div>
+  </div>
+
+  <!-- Bounding Box -->
+  <div class="comp-group">
+    <h3>/Bounding Box (Elemento Geométrico)</h3>
+    <div class="comp-preview dark-bg">
+      <div class="bbox-demo">
+        NOV
+        <div class="bbox-frame">
+          <div class="c1"></div><div class="c2"></div>
+        </div>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:#555;align-self:center;margin-left:24px;">
+        Simula seleção de software de design.<br>
+        Borda 1px + handles 6×6px nos cantos.<br>
+        Posicionar sobre letras ou elementos de destaque.
+      </div>
+    </div>
+  </div>
+
+  <!-- Moldura de Marca -->
+  <div class="comp-group">
+    <h3>/Moldura de Marca</h3>
+    <div class="comp-preview dark-bg">
+      <div class="frame-demo">
+        <div class="frame-demo-inner">
+          <div class="fd-arc"></div>
+          <div class="fd-top">
+            <span>COMITÊ DE IA</span>
+            <span>NOVA</span>
+            <span>/2026</span>
+          </div>
+          <div class="fd-left">/prompt</div>
+          <div class="fd-content">[CONTEÚDO DA PEÇA]</div>
+          <div class="fd-bottom">
+            <span>/2026</span>
+            <span>✦</span>
+            <span>NOVA</span>
+          </div>
+        </div>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:#555;align-self:center;margin-left:24px;max-width:240px;">
+        Assinatura informativa obrigatória.<br><br>
+        1080px+: moldura completa<br>
+        700–1080px: só cantos<br>
+        &lt;700px: sem moldura
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Labels -->
+  <div class="comp-group">
+    <h3>/Info Labels (sem emojis)</h3>
+    <div class="comp-preview">
+      <div class="info-demo">
+        <div class="info-row">
+          <span class="info-label">DATA</span>
+          <span class="info-sep">———</span>
+          <span class="info-val">23 de abril de 2026</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">HORA</span>
+          <span class="info-sep">———</span>
+          <span class="info-val">14h00</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">LOCAL</span>
+          <span class="info-sep">——</span>
+          <span class="info-val">Google Meet</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Linguagem Visual -->
+  <div class="comp-group">
+    <h3>/Linguagem Visual</h3>
+    <div class="token-grid">
+      <div class="token-item"><span class="token-key">/SEÇÃO</span><span class="token-val">Prefixo de seção — títulos</span></div>
+      <div class="token-item"><span class="token-key">> texto</span><span class="token-val">Terminal prompt — destaques</span></div>
+      <div class="token-item"><span class="token-key">/NOME_COMPOSTO</span><span class="token-val">Underscore — nomes compostos</span></div>
+      <div class="token-item"><span class="token-key">INPUT → IMPACTO</span><span class="token-val">Seta — fluxo</span></div>
+      <div class="token-item"><span class="token-key">> initializing...</span><span class="token-val">Reticências — decorativo</span></div>
+      <div class="token-item"><span class="token-key">/2026</span><span class="token-val">Barra + ano — marcação temporal</span></div>
+      <div class="token-item"><span class="token-key">DATA ——— valor</span><span class="token-val">Travessão longo — info estruturada</span></div>
+      <div class="token-item"><span class="token-key">✦</span><span class="token-val">Estrela — bullet, acento, separador</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 EXEMPLOS ══════════════════════════════════ -->
+<section class="section" id="exemplos">
+  <div class="sec-header">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Exemplos de Peças</h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <!-- Post Instagram -->
+  <div class="piece-preview">
+    <div class="piece-label">
+      <strong>Post Instagram</strong>
+      <span>1080 × 1080px &nbsp; · &nbsp; logo-v2-preto.b64</span>
+    </div>
+    <div class="piece-canvas">
+      <div class="post-ig">
+        <div class="post-ig-arc"></div>
+        <div class="post-ig-hline"></div>
+        <div class="post-ig-frame-t">
+          <span>COMITÊ DE IA</span>
+          <span>NOVA</span>
+          <span>/2026</span>
+        </div>
+        <div class="post-ig-content">
+          <div class="post-ig-tag">Módulo 2</div>
+          <div class="post-ig-title">IA na<br>Gestão Pública</div>
+          <div class="post-ig-sub">> initializing... &nbsp; ✦</div>
+        </div>
+        <div class="post-ig-frame-b">
+          <span>/2026</span>
+          <span>✦</span>
+          <span>NOVA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Convite WhatsApp -->
+  <div class="piece-preview">
+    <div class="piece-label">
+      <strong>Convite WhatsApp</strong>
+      <span>1200 × 630px &nbsp; · &nbsp; logo-v2-amarelo.b64</span>
+    </div>
+    <div class="piece-canvas">
+      <div class="whatsapp-card">
+        <div class="wa-faixa">
+          <div>
+            <div class="wa-faixa-text">NOVA</div>
+            <div class="wa-faixa-sub">/COMITÊ_DE_IA</div>
+          </div>
+        </div>
+        <div class="wa-body">
+          <div class="wa-title">Aula Inaugural —<br>Módulo 2</div>
+          <div class="wa-text">Participe da abertura do segundo módulo do Comitê de IA da NOVA. Sessão ao vivo com os facilitadores.</div>
+          <div class="wa-info">
+            <div class="info-row"><span class="info-label" style="color:#000;">DATA</span><span class="info-sep">———</span><span class="info-val" style="color:#333;">12 de maio</span></div>
+            <div class="info-row"><span class="info-label" style="color:#000;">HORA</span><span class="info-sep">———</span><span class="info-val" style="color:#333;">19h00</span></div>
+            <div class="info-row"><span class="info-label" style="color:#000;">LOCAL</span><span class="info-sep">——</span><span class="info-val" style="color:#333;">Google Meet</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide Capa -->
+  <div class="piece-preview">
+    <div class="piece-label">
+      <strong>Slide — Capa</strong>
+      <span>1920 × 1080px &nbsp; · &nbsp; logo-v2-preto.b64</span>
+    </div>
+    <div class="piece-canvas">
+      <div class="slide-capa">
+        <div class="slide-arc" style="width:320px;height:320px;bottom:-160px;right:-60px;"></div>
+        <div class="slide-arc" style="width:200px;height:200px;top:-80px;left:-60px;"></div>
+        <div class="slide-hline"></div>
+        <div class="slide-frame-t">
+          <span>COMITÊ DE IA</span>
+          <span>INPUT → IMPACTO</span>
+          <span>NOVA</span>
+        </div>
+        <div class="slide-content">
+          <div class="slide-tag">/MÓDULO_2 &nbsp; > initializing...</div>
+          <div class="slide-title">IA na<br>Gestão Pública</div>
+          <div class="slide-sub">NOVA &nbsp; ✦ &nbsp; Comitê de IA &nbsp; ✦ &nbsp; /2026</div>
+        </div>
+        <div class="slide-frame-b">
+          <span>/2026</span>
+          <span>✦</span>
+          <span>> initializing...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Email -->
+  <div class="piece-preview">
+    <div class="piece-label">
+      <strong>Cabeçalho de E-mail</strong>
+      <span>Asset oficial — header-nova.b64</span>
+    </div>
+    <div class="piece-canvas" style="background:#222;">
+      <div class="email-header-demo">
+        <img src="./Assets/HEADER-COMITE-DE-IA-NOVA.png" alt="Header oficial NOVA">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════ -->
+<footer>
+  <div>
+    <div class="footer-logo">NOVA</div>
+    <div class="footer-sub">/COMITÊ_DE_IA &nbsp; · &nbsp; Design System v2.0</div>
+  </div>
+  <div class="footer-meta">
+    INPUT → IMPACTO<br>
+    ✦ &nbsp; /2026 &nbsp; > initializing...
+  </div>
+</footer>
+
+</body>
+</html>
